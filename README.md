@@ -12,7 +12,7 @@ Windows 安裝 (cmd)
 ```cmd
 git clone https://github.com/hpware/changefiletypepy
 cd changefiletypepy
-python3 createdir.py
+python createdir.py
 python -m pip install -r requirements.txt
 python -m pip install --upgrade pip
 python main.py
