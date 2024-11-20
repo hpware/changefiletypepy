@@ -17,6 +17,6 @@ python -m pip install -r requirements.txt
 python -m pip install --upgrade pip
 ```
 ## 運行
-i 的資料夾都是檔案 請運行 main.py
+i 的資料夾都是檔案 請運行 ```main.py```
 
-i 的資料夾都是資料夾 請運行 main-dir.py
+i 的資料夾都是資料夾 請運行 ```main-dir.py```
