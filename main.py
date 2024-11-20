@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# coding=utf-8
+# vim:fileencoding=utf-8
+
 from PIL import Image
 import os
 
