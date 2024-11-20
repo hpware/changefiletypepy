@@ -25,7 +25,7 @@ for file in files:
         num += 1
         print(f"已轉換 {file} 到 {newfile}")
     except Exception as e:
-        print(f"轉換失敗" + e )
+        print(f"轉換失敗 {file} 原因 {e}")
 
 
 print("All files converted")
