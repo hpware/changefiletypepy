@@ -1,5 +1,4 @@
-# 改變檔案類形成PNG
-
+# 轉換檔案成 PNG 的程式
 Linux 安裝
 ```sh
 git clone https://github.com/hpware/changefiletypepy
