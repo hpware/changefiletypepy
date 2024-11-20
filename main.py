@@ -16,15 +16,16 @@ num = 1
 
 for file in files:
     imgpath = os.path.join(input_dir, file)
-    img = Image.open(imgpath)
-    filename1 = os.path.join(file)[0]
-    filename2 = os.path.join(file)[1]
-    filename3 = os.path.join(file)[2]
-    filename4 = os.path.join(file)[3]
-    newfile = filename1 + filename2 + filename3 + filename4 + str(num) + ".png"
-    output_p = os.path.join(output_dir, newfile)
-    img.save(output_p, format="PNG")
-    num += 1
-    print(f"Converted {file} to {newfile}")
+    try :
+        img = Image.open(imgpath)
+        basename = os.path.splitext(file)[0]
+        newfile = basename + str(num) + ".png"
+        output_p = os.path.join(output_dir, newfile)
+        img.save(output_p, format="PNG")
+        num += 1
+        print(f"已轉換 {file} 到 {newfile}")
+    except Exception as e:
+        print(f"轉換失敗" + e )
+
 
 print("All files converted")
