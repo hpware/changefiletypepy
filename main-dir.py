@@ -23,9 +23,6 @@ log_filepath = os.path.join("log/", log_filename)
 logging.basicConfig(filename=log_filepath, level=logging.INFO)
 logger = logging.getLogger("Transcoder")
 
-files = os.listdir(input_dir)
-num = 1
-
 def process_img(root, file, num):
         imgpath = os.path.join(root, file)
         try :
@@ -45,16 +42,20 @@ def process_img(root, file, num):
             print(f"轉換失敗 {file} in {relpath} 原因 {e}")
             logger.error(f"{e} File: {file} in {relpath}")
 
+try :
+    files = os.listdir(input_dir)
+    num = 1
+    with ThreadPoolExecutor() as executor:
+        features = []
+        for root, dirs, files in os.walk(input_dir):
+            for file in files: 
+                features.append(executor.submit(process_img, root, file, num))
+                num += 1
+        for feature in features:
+            feature.result()
 
-with ThreadPoolExecutor() as executor:
-    features = []
-    for root, dirs, files in os.walk(input_dir):
-          for file in files: 
-            features.append(executor.submit(process_img, root, file, num))
-            num += 1
-    for feature in features:
-        feature.result()
-
-
-print("已轉換完成")
-logger.info("Transcode Completed")
+    print("已轉換完成")
+    logger.info("Transcode Completed")
+except KeyboardInterrupt:
+    print("使用者中斷")
+    logger.error("User Interrupt")
