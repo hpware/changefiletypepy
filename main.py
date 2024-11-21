@@ -6,6 +6,7 @@ from PIL import Image
 import os
 import logging
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 input_dir = "input_img/"
 output_dir = "output_img/"
@@ -25,7 +26,7 @@ logger = logging.getLogger("Transcoder")
 files = os.listdir(input_dir)
 num = 1
 
-for file in files:
+def process_img(file, num):
     imgpath = os.path.join(input_dir, file)
     try :
         img = Image.open(imgpath)
@@ -33,13 +34,19 @@ for file in files:
         newfile = basename + str(num) + ".png"
         output_p = os.path.join(output_dir, newfile)
         img.save(output_p, format="PNG")
-        num += 1
         print(f"已轉換 {file} 到 {newfile}")
         logger.info(f"Transcoded {file} to {newfile}")
     except Exception as e:
         print(f"轉換失敗 {file} 原因 {e}")
         logger.error(f"Transcode Error: {e} File: {file}") 
 
+with ThreadPoolExecutor() as executor:
+    features = []
+    for file in files:
+        features.append(executor.submit(process_img, file, num))
+        num += 1
+    for feature in features:
+        feature.result()
 
 print("已轉換完成")
 logger.info("Transcode Completed")
