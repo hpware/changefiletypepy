@@ -34,9 +34,9 @@ for root, dirs, files in os.walk(input_dir):
             if not os.path.exists(output_sdir):
                 os.makedirs(output_sdir)
             basename = os.path.splitext(file)[0] + "_"
-            newfile = basename + str(num) + ".png"
+            newfile = basename + str(num) + ".jpg"
             output_p = os.path.join(output_sdir, newfile)
-            img.save(output_p, format="PNG")
+            img.save(output_p, format="JPG")
             num += 1
             print(f"已轉換 {file} 到 {newfile} in {relpath}")
             logger.info(f"{file} to {newfile} in {relpath}")

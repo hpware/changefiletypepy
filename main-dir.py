@@ -35,9 +35,9 @@ def process_img(root, file, num):
             if not os.path.exists(output_sdir):
                 os.makedirs(output_sdir)
             basename = os.path.splitext(file)[0] + "_"
-            newfile = basename + str(num) + ".png"
+            newfile = basename + str(num) + ".jpg"
             output_p = os.path.join(output_sdir, newfile)
-            img.save(output_p, format="PNG")
+            img.save(output_p, format="JPG")
             print(f"已轉換 {file} 到 {newfile} in {relpath}")
             logger.info(f"{file} to {newfile} in {relpath}")
         except Exception as e:

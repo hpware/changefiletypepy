@@ -31,9 +31,9 @@ def process_img(file, num):
     try :
         img = Image.open(imgpath)
         basename = os.path.splitext(file)[0] + "_"
-        newfile = basename + str(num) + ".png"
+        newfile = basename + str(num) + ".jpg"
         output_p = os.path.join(output_dir, newfile)
-        img.save(output_p, format="PNG")
+        img.save(output_p, format="JPG")
         print(f"已轉換 {file} 到 {newfile}")
         logger.info(f"Transcoded {file} to {newfile}")
     except Exception as e:
