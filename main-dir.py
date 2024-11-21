@@ -7,8 +7,8 @@ import os
 import logging
 import time
 
-input_dir = "i/"
-output_dir = "o/"
+input_dir = "input_img/"
+output_dir = "output_img/"
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
