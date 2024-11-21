@@ -45,6 +45,5 @@ for root, dirs, files in os.walk(input_dir):
             print(f"轉換失敗 {file} in {relpath} 原因 {e}")
             logger.error(f"{e} File: {file} in {relpath}")
 
-
 print("已轉換完成")
 logger.info("Transcode Completed")
